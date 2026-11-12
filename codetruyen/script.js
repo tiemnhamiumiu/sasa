@@ -149,6 +149,10 @@
     let movieUnlocked = false;
     let resumeShown = false;
 
+    let everPlayed = false;
+    let hudTimer = null;
+    const HUD_HIDE_DELAY = 3500;
+
     let watchSeconds = 0;
     let watchTimer = null;
     let lastTick = null;
@@ -1664,6 +1668,9 @@
 
         card.classList.add("is-playing");
 
+        everPlayed = true;
+        scheduleHideHud();
+
         if (playBtn) {
             playBtn.textContent = "⏸";
         }
@@ -1681,6 +1688,11 @@
     function onMediaStoppedPlaying() {
 
         card.classList.remove("is-playing");
+
+        /* Tạm dừng: giữ thanh điều khiển luôn hiện */
+        if (everPlayed) {
+            showHud();
+        }
 
         if (playBtn) {
             playBtn.textContent = "▶";
@@ -1882,13 +1894,141 @@
        NÚT ĐIỀU KHIỂN
     ===================================================== */
 
+    /* ---------- Thanh điều khiển nổi trên video ---------- */
+
+    function showHud() {
+
+        clearTimeout(hudTimer);
+
+        card.classList.add("hud-show");
+    }
+
+    function hideHud() {
+
+        clearTimeout(hudTimer);
+
+        card.classList.remove("hud-show");
+    }
+
+    /* Đang phát thì tự ẩn sau vài giây, đang dừng thì giữ nguyên */
+    function scheduleHideHud() {
+
+        clearTimeout(hudTimer);
+
+        if (!card.classList.contains("hud-show")) {
+            return;
+        }
+
+        if (!isYouTubePlaying()) {
+            return;
+        }
+
+        hudTimer = setTimeout(hideHud, HUD_HIDE_DELAY);
+    }
+
+    function onScreenTap() {
+
+        /* Chưa toàn màn hình: chạm vào video = phát / tạm dừng như cũ */
+        if (!card.classList.contains("fs-on")) {
+            togglePlay();
+            return;
+        }
+
+        /* Toàn màn hình, chưa từng phát: chạm = bắt đầu phát */
+        if (!everPlayed) {
+            togglePlay();
+            return;
+        }
+
+        if (card.classList.contains("hud-show")) {
+
+            /* Đang phát thì chạm lần nữa sẽ ẩn, đang dừng thì giữ */
+            if (isYouTubePlaying()) {
+                hideHud();
+            }
+
+            return;
+        }
+
+        showHud();
+        scheduleHideHud();
+    }
+
+    /* Vào toàn màn hình: đưa thanh điều khiển vào trong video (ẩn sẵn).
+       Thoát ra: trả thanh điều khiển về chỗ cũ dưới video. */
+
+    let hudHome = null;
+    let hudHomeNext = null;
+
+    function updateFullscreenLabel() {
+
+        const current =
+            document.fullscreenElement ||
+            document.webkitFullscreenElement;
+
+        const hud = document.getElementById("movieHud");
+
+        if (fullscreenBtn) {
+            fullscreenBtn.textContent = current
+                ? "⤡ Thu nhỏ màn hình"
+                : "⛶ Toàn màn hình";
+        }
+
+        if (!hud || !screenEl) {
+            return;
+        }
+
+        if (current === screenEl) {
+
+            if (hud.parentNode !== screenEl) {
+                hudHome = hud.parentNode;
+                hudHomeNext = hud.nextSibling;
+                screenEl.appendChild(hud);
+            }
+
+            hud.classList.add("in-screen");
+            card.classList.add("fs-on");
+            card.classList.remove("hud-show");
+
+        } else {
+
+            clearTimeout(hudTimer);
+
+            hud.classList.remove("in-screen");
+            card.classList.remove("fs-on");
+            card.classList.remove("hud-show");
+
+            if (hudHome && hud.parentNode !== hudHome) {
+                hudHome.insertBefore(hud, hudHomeNext);
+            }
+        }
+    }
+
     function initControls() {
 
-        /* ---------- Bấm vào video / nút to để phát ---------- */
+        /* ---------- Chạm vào màn hình: hiện thanh điều khiển ---------- */
 
         if (overlay) {
-            overlay.addEventListener("click", togglePlay);
+            overlay.addEventListener("click", onScreenTap);
         }
+
+        /* Thao tác trên thanh điều khiển thì gia hạn thời gian hiện */
+
+        const hud = document.getElementById("movieHud");
+
+        if (hud) {
+
+            ["click", "touchstart", "input"].forEach(function (name) {
+
+                hud.addEventListener(name, function () {
+                    scheduleHideHud();
+                }, { passive: true });
+
+            });
+        }
+
+        document.addEventListener("fullscreenchange", updateFullscreenLabel);
+        document.addEventListener("webkitfullscreenchange", updateFullscreenLabel);
 
         if (playBtn) {
             playBtn.addEventListener("click", togglePlay);

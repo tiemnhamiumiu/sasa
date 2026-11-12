@@ -63,27 +63,15 @@
     </div>
 
 
-    <!-- THÔNG TIN PHIM -->
-
-    <div class="movie-info">
-
-      <h1 class="movie-title">Tướng Quân Chạy Đâu Cho Thoát</h1>
-
-      <div class="movie-meta">
-        <span class="movie-chip hot">🔥 Mới cập nhật</span>
-        <span class="movie-chip">📅 2025</span>
-        <span class="movie-chip">🎭 Tình cảm</span>
-        <span class="movie-chip">⏱ 1 giờ 45 phút</span>
-      </div>
-
-    </div>
-
-
-    <!-- ĐIỀU KHIỂN -->
+    <!-- MỐC XEM -->
 
     <div class="movie-controls-wrap">
 
-      <div class="movie-progress-wrap">
+      <!-- THANH ĐIỀU KHIỂN: nằm dưới video; khi toàn màn hình sẽ tự chuyển vào trong video -->
+
+      <div class="movie-hud" id="movieHud">
+
+    <div class="movie-progress-wrap">
         <div id="movieTimeBubble" class="movie-time-bubble">00:00</div>
         <input
           id="movieProgress"
@@ -116,6 +104,8 @@
         <button id="fullscreenBtn" class="movie-fs-btn" type="button">⛶ Toàn màn hình</button>
       </div>
 
+    </div>
+
       <div class="movie-marker" id="movieMarker">
         <div class="marker-info">
           <div class="marker-icon">📍</div>
@@ -131,19 +121,6 @@
       </div>
 
     </div>
-
-  </section>
-
-
-  <!-- NỘI DUNG PHIM -->
-
-  <section class="movie-desc">
-
-    <h2>Nội dung phim</h2>
-
-    <p>
-      Dán nội dung / giới thiệu phim vào đây.
-    </p>
 
   </section>
 

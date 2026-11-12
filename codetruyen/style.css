@@ -94,6 +94,10 @@ body.movieLocked {
   border: 1px solid #2a2a2a;
   border-radius: 20px;
   overflow: hidden;
+  /* Thu nhỏ theo chiều cao cửa sổ để video + nút điều khiển luôn vừa màn hình */
+  width: min(100%, max(340px, calc((100vh - 380px) * 16 / 9)));
+  margin-left: auto;
+  margin-right: auto;
   box-shadow:
     0 16px 44px rgba(0, 0, 0, 0.55),
     0 0 0 1px rgba(255, 255, 255, 0.02);
@@ -111,14 +115,29 @@ body.movieLocked {
 }
 
 /* YouTube thay thẻ div bằng iframe và giữ nguyên id */
+/* Khung YouTube cao hơn màn hình 1.5 lần rồi dịch lên,
+   để thanh tên video / kênh / logo của YouTube nằm ngoài vùng nhìn thấy */
 #youtubePlayer,
 .movie-screen iframe {
   position: absolute !important;
-  inset: 0;
+  left: 0;
+  top: -25%;
   width: 100% !important;
-  height: 100% !important;
+  height: 150% !important;
   border: 0;
   background: #000000;
+}
+
+.movie-screen:fullscreen iframe,
+.movie-screen:fullscreen #youtubePlayer {
+  top: 0;
+  height: 100% !important;
+}
+
+.movie-screen:-webkit-full-screen iframe,
+.movie-screen:-webkit-full-screen #youtubePlayer {
+  top: 0;
+  height: 100% !important;
 }
 
 .movie-screen:fullscreen {
@@ -1247,5 +1266,94 @@ body.movieLocked {
   .xoi-thit-arrow {
     margin: 0 10px;
     font-size: 25px;
+  }
+}
+
+
+/* ==================================================
+   TOÀN MÀN HÌNH: thanh điều khiển nằm trong video,
+   ẩn sẵn, chạm vào màn hình mới hiện
+================================================== */
+
+.movie-hud.in-screen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  padding: 50px max(24px, 6vw) 22px;
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(0, 0, 0, 0.62) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.movie-card.hud-show .movie-hud.in-screen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.movie-hud.in-screen .movie-time {
+  margin-top: 6px;
+  color: #e6e6e6;
+}
+
+.movie-hud.in-screen .movie-main-controls {
+  margin-top: 6px;
+}
+
+.movie-hud.in-screen .movie-tools {
+  margin-top: 12px;
+}
+
+.movie-hud.in-screen .movie-tools-title {
+  color: #d0d0d0;
+}
+
+.movie-hud.in-screen .movie-skip-btn,
+.movie-hud.in-screen .speed-btn:not(.active),
+.movie-hud.in-screen .movie-fs-btn {
+  background: rgba(34, 34, 34, 0.85);
+}
+
+/* Thanh điều khiển đang hiện thì ẩn nút phát to ở giữa */
+.movie-card.fs-on.hud-show .movie-play-btn,
+.movie-card.fs-on .movie-overlay:hover .movie-play-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.movie-card.fs-on.hud-show .movie-overlay {
+  background: rgba(0, 0, 0, 0.28);
+}
+
+@media (max-height: 520px) {
+
+  .movie-hud.in-screen {
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+
+  .movie-hud.in-screen .movie-main-controls {
+    margin-top: 2px;
+  }
+
+  .movie-hud.in-screen .movie-tools {
+    margin-top: 6px;
+  }
+
+  .movie-hud.in-screen .movie-play {
+    width: 42px;
+    height: 42px;
+  }
+
+  .movie-hud.in-screen .movie-skip-btn {
+    height: 34px;
   }
 }

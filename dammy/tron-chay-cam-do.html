@@ -4,25 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tướng Quân Chạy Đâu Cho Thoát</title>
+
+  <title>Tướng Quân Chạy Đâu Cho Thoát</title>
 
   <link rel="stylesheet" href="../codetruyen/style.css">
-<link rel="icon" type="image/png" href="../codetruyen/icon.jpg">
+  <link rel="icon" type="image/png" href="../codetruyen/icon.jpg">
 </head>
 
 <body>
+
+<!-- ==================================================
+     MENU (sửa các mục cho đúng web của bạn)
+================================================== -->
+
 <header class="menu">
   <a href="../index.html">Trang chủ</a>
   <a href="../ngontinh.html">Ngôn tình</a>
   <a href="../dammy.html">Đam mỹ</a>
-    <a href="../cotrang.html">Cổ trang</a>
+  <a href="../cotrang.html">Cổ trang</a>
   <a href="https://tiemnhamiumiu.neocities.org/" id="xoiThitLink">Xôi Thịt</a>
 </header>
 
-<div class="topbar">
-  Tướng Quân Chạy Đâu Cho Thoát
-</div>
-<div class="container">
+<div class="topbar">Tướng Quân Chạy Đâu Cho Thoát</div>
+
+
+<main class="container">
 
   <!-- ==================================================
        THẺ PHIM
@@ -57,27 +63,15 @@
     </div>
 
 
-    <!-- THÔNG TIN PHIM -->
-
-    <div class="movie-info">
-
-      <h1 class="movie-title">Tên Phim</h1>
-
-      <div class="movie-meta">
-        <span class="movie-chip hot">🔥 Mới cập nhật</span>
-        <span class="movie-chip">📅 2025</span>
-        <span class="movie-chip">🎭 Tình cảm</span>
-        <span class="movie-chip">⏱ 1 giờ 45 phút</span>
-      </div>
-
-    </div>
-
-
-    <!-- ĐIỀU KHIỂN -->
+    <!-- MỐC XEM -->
 
     <div class="movie-controls-wrap">
 
-      <div class="movie-progress-wrap">
+      <!-- THANH ĐIỀU KHIỂN: nằm dưới video; khi toàn màn hình sẽ tự chuyển vào trong video -->
+
+      <div class="movie-hud" id="movieHud">
+
+    <div class="movie-progress-wrap">
         <div id="movieTimeBubble" class="movie-time-bubble">00:00</div>
         <input
           id="movieProgress"
@@ -110,6 +104,8 @@
         <button id="fullscreenBtn" class="movie-fs-btn" type="button">⛶ Toàn màn hình</button>
       </div>
 
+    </div>
+
       <div class="movie-marker" id="movieMarker">
         <div class="marker-info">
           <div class="marker-icon">📍</div>
@@ -128,19 +124,6 @@
 
   </section>
 
-
-  <!-- NỘI DUNG PHIM -->
-
-  <section class="movie-desc">
-
-    <h2>Nội dung phim</h2>
-
-    <p>
-      Dán nội dung / giới thiệu phim vào đây.
-    </p>
-
-  </section>
-
 </main>
 
 
@@ -153,9 +136,9 @@
   <div class="xoi-thit-box">
 
     <div class="xoi-thit-icons">
-      <img src="../codephim/icon.jpg" alt="Web phim" class="xoi-thit-icon">
+      <img src="../codetruyen/icon.jpg" alt="Web phim" class="xoi-thit-icon">
       <span class="xoi-thit-arrow">→</span>
-      <img src="../codephim/iconxoi.jpg" alt="Xôi Thịt Nhà Mui Miu" class="xoi-thit-icon">
+      <img src="../codetruyen/iconxoi.jpg" alt="Xôi Thịt Nhà Mui Miu" class="xoi-thit-icon">
     </div>
 
     <div class="xoi-thit-text">
@@ -177,83 +160,7 @@
 </div>
 
 
-
-<script>
-
-const xoiThitLink = document.getElementById("xoiThitLink");
-const xoiThitPopup = document.getElementById("xoiThitPopup");
-const xoiThitYes = document.getElementById("xoiThitYes");
-const xoiThitNo = document.getElementById("xoiThitNo");
-
-
-/* ==================================================
-   KIỂM TRA PHẦN TỬ
-================================================== */
-
-if (
-  xoiThitLink &&
-  xoiThitPopup &&
-  xoiThitYes &&
-  xoiThitNo
-) {
-
-
-  /* ==================================================
-     ẤN XÔI THỊT
-  ================================================== */
-
-  xoiThitLink.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    xoiThitPopup.style.display = "flex";
-
-  });
-
-
-  /* ==================================================
-     CÓ → CHUYỂN WEB
-  ================================================== */
-
-  xoiThitYes.addEventListener("click", function() {
-
-    window.location.href = "https://tiemnhamiumiu.neocities.org/";
-
-  });
-
-
-  /* ==================================================
-     KHÔNG → ĐÓNG BẢNG
-  ================================================== */
-
-  xoiThitNo.addEventListener("click", function() {
-
-    xoiThitPopup.style.display = "none";
-
-  });
-
-
-  /* ==================================================
-     ẤN RA NGOÀI BẢNG → ĐÓNG
-  ================================================== */
-
-  xoiThitPopup.addEventListener("click", function(event) {
-
-    if (
-      event.target ===
-      xoiThitPopup
-    ) {
-
-      xoiThitPopup.style.display = "none";
-
-    }
-
-  });
-
-}
-
-</script>
-
+<script src="../codetruyen/script.js"></script>
 
 </body>
 </html>

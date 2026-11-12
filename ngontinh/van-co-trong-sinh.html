@@ -4,270 +4,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ván Cờ Trọng Sinh</title>
+
+  <title>Tướng Quân Chạy Đâu Cho Thoát</title>
 
   <link rel="stylesheet" href="../codetruyen/style.css">
-<link rel="icon" type="image/png" href="../codetruyen/icon.jpg">
+  <link rel="icon" type="image/png" href="../codetruyen/icon.jpg">
 </head>
 
 <body>
+
+<!-- ==================================================
+     MENU (sửa các mục cho đúng web của bạn)
+================================================== -->
+
 <header class="menu">
   <a href="../index.html">Trang chủ</a>
   <a href="../ngontinh.html">Ngôn tình</a>
   <a href="../dammy.html">Đam mỹ</a>
-    <a href="../cotrang.html">Cổ trang</a>
+  <a href="../cotrang.html">Cổ trang</a>
   <a href="https://tiemnhamiumiu.neocities.org/" id="xoiThitLink">Xôi Thịt</a>
 </header>
 
-<div class="topbar">
-  Ván Cờ Trọng Sinh
-</div>
-<div class="container">
-<div id="lockedContent">
-
-<div class="audio-card" id="audioCard" data-audio="https://ia601909.us.archive.org/17/items/tiemnhamiumiu_ngontinh/van-co-trong-sinh.mp3" data-marker="14:05" data-marker-label="14:05">
-<div class="audio-header">
-  <div class="audio-icon">🎧</div>
-<div class="audio-title">
-<div class="audio-name">Ván Cờ Trọng Sinh</div>
-<div class="audio-subtitle">Nghe truyện bằng audio</div>
-</div>
-</div>
-
-<div id="storyAudio" aria-hidden="true">
-<div id="youtubePlayer"></div>
-</div>
-
-<div class="audio-progress-wrap">
-<div id="audioTimeBubble" class="audio-time-bubble">14:05</div>
-<input id="audioProgress" class="audio-progress" type="range" min="0" max="1" value="0" step="0.1">
-</div>
-
-<div class="audio-time">
-<span id="currentTime">00:00</span>
-<span id="duration">00:00</span>
-</div>
-
-<div class="audio-main-controls">
-<button id="back10Btn" class="audio-control-btn" type="button">↶ <span>10s</span></button>
-<button id="playPauseBtn" class="audio-play" type="button">▶</button>
-<button id="forward10Btn" class="audio-control-btn" type="button"><span>10s</span> ↷</button>
-</div>
-
-<div class="audio-speed">
-<span class="speed-title">Tốc độ</span>
-<button class="speed-btn active" data-speed="1" type="button">1x</button>
-<button class="speed-btn" data-speed="1.25" type="button">1.25x</button>
-<button class="speed-btn" data-speed="1.5" type="button">1.5x</button>
-<button class="speed-btn" data-speed="2" type="button">2x</button>
-</div>
+<div class="topbar">Tướng Quân Chạy Đâu Cho Thoát</div>
 
 
-<!-- =========================
-     THẺ NHẠC NỀN
-========================= -->
+<main class="container">
 
-<div class="background-music">
+  <!-- ==================================================
+       THẺ PHIM
 
-<button id="musicToggleBtn" class="music-toggle-btn" type="button">
-<span class="music-toggle-left">🎵 <span>Chọn Nhạc nền</span></span>
+       Mỗi phim chỉ cần sửa:
+       - data-video        : link YouTube (youtu.be/ID hoặc youtube.com/watch?v=ID)
+       - data-marker       : mốc xem (vd 15:44 hoặc 1:12:57), bỏ trống nếu không dùng
+       - data-marker-label : chữ hiện trên nút mốc
+       - tên phim, chip thông tin, nội dung bên dưới
+  ================================================== -->
 
-<span id="musicArrow" class="music-arrow">▼</span>
-</button>
+  <section
+    class="movie-card"
+    id="movieCard"
+    data-video="https://youtu.be/YFQ7Bzb5e3k"
+    data-marker="15:44"
+    data-marker-label="15:44"
+  >
 
-<div id="musicPanel" class="music-panel" style="display:none;">
+    <!-- MÀN HÌNH VIDEO -->
 
-<div class="music-panel-title">🎶 Chọn nhạc nền</div>
+    <div class="movie-screen" id="movieScreen">
 
-<div id="musicList" class="music-list"></div>
+      <div id="youtubePlayer"></div>
 
-<div id="selectedMusic" class="selected-music">
-Chưa chọn nhạc nền
-</div>
+      <div class="movie-overlay" id="movieOverlay">
+        <div class="movie-play-btn" id="movieOverlayBtn">▶</div>
+      </div>
 
-<div class="music-volume-row">
-<span class="music-volume-icon">🔊</span>
+      <div class="movie-error" id="movieError" style="display:none;"></div>
 
-<input id="musicVolume" class="music-volume" type="range" min="0" max="1" step="0.01" value="0.35">
-
-<span id="musicVolumeValue" class="music-volume-value">35%</span>
-</div>
-
-<div class="music-controls">
-<button id="musicPlayPauseBtn" class="music-control-btn" type="button" disabled>▶ Phát nhạc</button>
-
-<button id="musicUseBtn" class="music-control-btn music-use-btn" type="button" disabled>☑ Dùng nhạc nền</button>
-</div>
-
-</div>
-</div>
-
-<div class="audio-marker">
-<div class="marker-info">
-<div class="marker-icon">📍</div>
-<div>
-<div class="marker-title">Mốc nghe</div>
-<div class="marker-description">Nhấn để nghe từ đoạn được chia sẻ từ TikTok/Facebook</div>
-</div>
-</div>
-
-<button id="markerBtn" class="marker-btn" type="button">
-▶ <span id="markerTime">14:05</span>
-</button>
-</div>
-
-</div>
-
-<div id="facebook-read" class="facebook-read">
-<a href="#facebook-point" class="fb-btn">👉 Nhấn vào đây để đọc truyện tiếp nếu bạn từ Facebook sang</a>
-</div>
-<div id="story">
-    
-</div>
+    </div>
 
 
+    <!-- MỐC XEM -->
 
-</div>
+    <div class="movie-controls-wrap">
+
+      <!-- THANH ĐIỀU KHIỂN: nằm dưới video; khi toàn màn hình sẽ tự chuyển vào trong video -->
+
+      <div class="movie-hud" id="movieHud">
+
+    <div class="movie-progress-wrap">
+        <div id="movieTimeBubble" class="movie-time-bubble">00:00</div>
+        <input
+          id="movieProgress"
+          class="movie-progress"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          step="0.1"
+        >
+      </div>
+
+      <div class="movie-time">
+        <span id="currentTime">00:00</span>
+        <span id="duration">00:00</span>
+      </div>
+
+      <div class="movie-main-controls">
+        <button id="back10Btn" class="movie-skip-btn" type="button">↶ 10s</button>
+        <button id="playPauseBtn" class="movie-play" type="button">▶</button>
+        <button id="forward10Btn" class="movie-skip-btn" type="button">10s ↷</button>
+      </div>
+
+      <div class="movie-tools">
+        <span class="movie-tools-title">Tốc độ</span>
+        <button class="speed-btn active" data-speed="1" type="button">1x</button>
+        <button class="speed-btn" data-speed="1.25" type="button">1.25x</button>
+        <button class="speed-btn" data-speed="1.5" type="button">1.5x</button>
+        <button class="speed-btn" data-speed="2" type="button">2x</button>
+        <button id="fullscreenBtn" class="movie-fs-btn" type="button">⛶ Toàn màn hình</button>
+      </div>
+
+    </div>
+
+      <div class="movie-marker" id="movieMarker">
+        <div class="marker-info">
+          <div class="marker-icon">📍</div>
+          <div>
+            <div class="marker-title">Mốc xem</div>
+            <div class="marker-description">Nhấn để xem từ đoạn được chia sẻ từ TikTok/Facebook</div>
+          </div>
+        </div>
+
+        <button id="markerBtn" class="marker-btn" type="button">
+          ▶ <span id="markerTime">15:44</span>
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
 
 
 <!-- ==================================================
-     JAVASCRIPT TRUYỆN
-================================================== -->
-
-<script src="../codetruyen/script.js"></script>
-<script src="../codetruyen/audio.js"></script>
-
-
-<!-- ==================================================
-     POPUP XÔI THỊT
+     POPUP CHUYỂN SANG WEB XÔI THỊT
 ================================================== -->
 
 <div id="xoiThitPopup" class="xoi-thit-overlay" style="display:none;">
 
-<div class="xoi-thit-box">
+  <div class="xoi-thit-box">
 
-<!-- ICON WEB CŨ -->
+    <div class="xoi-thit-icons">
+      <img src="../codetruyen/icon.jpg" alt="Web phim" class="xoi-thit-icon">
+      <span class="xoi-thit-arrow">→</span>
+      <img src="../codetruyen/iconxoi.jpg" alt="Xôi Thịt Nhà Mui Miu" class="xoi-thit-icon">
+    </div>
 
-<img src="../codetruyen/icon.jpg" alt="Truyện Mới Miu Miu" class="xoi-thit-icon">
+    <div class="xoi-thit-text">
+      Bạn đang chuyển qua web
+      <strong>Xôi Thịt Nhà Mui Miu</strong>
+    </div>
 
+    <div class="xoi-thit-question">
+      Bạn có muốn tiếp tục không?
+    </div>
 
-<!-- MŨI TÊN -->
+    <div class="xoi-thit-buttons">
+      <button id="xoiThitYes" class="xoi-thit-yes" type="button">Có</button>
+      <button id="xoiThitNo" class="xoi-thit-no" type="button">Không</button>
+    </div>
 
-<span class="xoi-thit-arrow">→</span>
-
-
-<!-- ICON XÔI THỊT -->
-
-<img src="../codetruyen/iconxoi.jpg" alt="Xôi Thịt Nhà Mui Miu" class="xoi-thit-icon">
-
-
-<!-- NỘI DUNG -->
-
-<div class="xoi-thit-text">
-Bạn đang chuyển qua web
-<strong>Xôi Thịt Nhà Mui Miu</strong>
-</div>
-
-<div class="xoi-thit-question">
-Bạn có muốn tiếp tục không?
-</div>
-
-
-<!-- BUTTONS -->
-
-<div class="xoi-thit-buttons">
-
-<button id="xoiThitYes" class="xoi-thit-yes" type="button">Có</button>
-
-<button id="xoiThitNo" class="xoi-thit-no" type="button">Không</button>
-
-</div>
-
-</div>
+  </div>
 
 </div>
 
 
-<!-- ==================================================
-     POPUP SCRIPT
-================================================== -->
-
-<script>
-
-const xoiThitLink = document.getElementById("xoiThitLink");
-const xoiThitPopup = document.getElementById("xoiThitPopup");
-const xoiThitYes = document.getElementById("xoiThitYes");
-const xoiThitNo = document.getElementById("xoiThitNo");
-
-
-/* ==================================================
-   KIỂM TRA PHẦN TỬ
-================================================== */
-
-if (
-  xoiThitLink &&
-  xoiThitPopup &&
-  xoiThitYes &&
-  xoiThitNo
-) {
-
-
-  /* ==================================================
-     ẤN XÔI THỊT
-  ================================================== */
-
-  xoiThitLink.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    xoiThitPopup.style.display = "flex";
-
-  });
-
-
-  /* ==================================================
-     CÓ → CHUYỂN WEB
-  ================================================== */
-
-  xoiThitYes.addEventListener("click", function() {
-
-    window.location.href = "https://tiemnhamiumiu.neocities.org/";
-
-  });
-
-
-  /* ==================================================
-     KHÔNG → ĐÓNG BẢNG
-  ================================================== */
-
-  xoiThitNo.addEventListener("click", function() {
-
-    xoiThitPopup.style.display = "none";
-
-  });
-
-
-  /* ==================================================
-     ẤN RA NGOÀI BẢNG → ĐÓNG
-  ================================================== */
-
-  xoiThitPopup.addEventListener("click", function(event) {
-
-    if (
-      event.target ===
-      xoiThitPopup
-    ) {
-
-      xoiThitPopup.style.display = "none";
-
-    }
-
-  });
-
-}
-
-</script>
-
+<script src="../codetruyen/script.js"></script>
 
 </body>
 </html>
