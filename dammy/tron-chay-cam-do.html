@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tướng Quân Chạy Đâu Cho Thoát</title>
+
+  <link rel="stylesheet" href="../codetruyen/style.css">
+<link rel="icon" type="image/png" href="../codetruyen/icon.jpg">
+</head>
+
+<body>
+<header class="menu">
+  <a href="../index.html">Trang chủ</a>
+  <a href="../ngontinh.html">Ngôn tình</a>
+  <a href="../dammy.html">Đam mỹ</a>
+    <a href="../cotrang.html">Cổ trang</a>
+  <a href="https://tiemnhamiumiu.neocities.org/" id="xoiThitLink">Xôi Thịt</a>
+</header>
+
+<div class="topbar">
+  Tướng Quân Chạy Đâu Cho Thoát
+</div>
+<div class="container">
+
+  <!-- ==================================================
+       THẺ PHIM
+
+       Mỗi phim chỉ cần sửa:
+       - data-video        : link YouTube (youtu.be/ID hoặc youtube.com/watch?v=ID)
+       - data-marker       : mốc xem (vd 15:44 hoặc 1:12:57), bỏ trống nếu không dùng
+       - data-marker-label : chữ hiện trên nút mốc
+       - tên phim, chip thông tin, nội dung bên dưới
+  ================================================== -->
+
+  <section
+    class="movie-card"
+    id="movieCard"
+    data-video="https://youtu.be/YFQ7Bzb5e3k"
+    data-marker="15:44"
+    data-marker-label="15:44"
+  >
+
+    <!-- MÀN HÌNH VIDEO -->
+
+    <div class="movie-screen" id="movieScreen">
+
+      <div id="youtubePlayer"></div>
+
+      <div class="movie-overlay" id="movieOverlay">
+        <div class="movie-play-btn" id="movieOverlayBtn">▶</div>
+      </div>
+
+      <div class="movie-error" id="movieError" style="display:none;"></div>
+
+    </div>
+
+
+    <!-- THÔNG TIN PHIM -->
+
+    <div class="movie-info">
+
+      <h1 class="movie-title">Tên Phim</h1>
+
+      <div class="movie-meta">
+        <span class="movie-chip hot">🔥 Mới cập nhật</span>
+        <span class="movie-chip">📅 2025</span>
+        <span class="movie-chip">🎭 Tình cảm</span>
+        <span class="movie-chip">⏱ 1 giờ 45 phút</span>
+      </div>
+
+    </div>
+
+
+    <!-- ĐIỀU KHIỂN -->
+
+    <div class="movie-controls-wrap">
+
+      <div class="movie-progress-wrap">
+        <div id="movieTimeBubble" class="movie-time-bubble">00:00</div>
+        <input
+          id="movieProgress"
+          class="movie-progress"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          step="0.1"
+        >
+      </div>
+
+      <div class="movie-time">
+        <span id="currentTime">00:00</span>
+        <span id="duration">00:00</span>
+      </div>
+
+      <div class="movie-main-controls">
+        <button id="back10Btn" class="movie-skip-btn" type="button">↶ 10s</button>
+        <button id="playPauseBtn" class="movie-play" type="button">▶</button>
+        <button id="forward10Btn" class="movie-skip-btn" type="button">10s ↷</button>
+      </div>
+
+      <div class="movie-tools">
+        <span class="movie-tools-title">Tốc độ</span>
+        <button class="speed-btn active" data-speed="1" type="button">1x</button>
+        <button class="speed-btn" data-speed="1.25" type="button">1.25x</button>
+        <button class="speed-btn" data-speed="1.5" type="button">1.5x</button>
+        <button class="speed-btn" data-speed="2" type="button">2x</button>
+        <button id="fullscreenBtn" class="movie-fs-btn" type="button">⛶ Toàn màn hình</button>
+      </div>
+
+      <div class="movie-marker" id="movieMarker">
+        <div class="marker-info">
+          <div class="marker-icon">📍</div>
+          <div>
+            <div class="marker-title">Mốc xem</div>
+            <div class="marker-description">Nhấn để xem từ đoạn được chia sẻ từ TikTok/Facebook</div>
+          </div>
+        </div>
+
+        <button id="markerBtn" class="marker-btn" type="button">
+          ▶ <span id="markerTime">15:44</span>
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- NỘI DUNG PHIM -->
+
+  <section class="movie-desc">
+
+    <h2>Nội dung phim</h2>
+
+    <p>
+      Dán nội dung / giới thiệu phim vào đây.
+    </p>
+
+  </section>
+
+</main>
+
+
+<!-- ==================================================
+     POPUP CHUYỂN SANG WEB XÔI THỊT
+================================================== -->
+
+<div id="xoiThitPopup" class="xoi-thit-overlay" style="display:none;">
+
+  <div class="xoi-thit-box">
+
+    <div class="xoi-thit-icons">
+      <img src="../codephim/icon.jpg" alt="Web phim" class="xoi-thit-icon">
+      <span class="xoi-thit-arrow">→</span>
+      <img src="../codephim/iconxoi.jpg" alt="Xôi Thịt Nhà Mui Miu" class="xoi-thit-icon">
+    </div>
+
+    <div class="xoi-thit-text">
+      Bạn đang chuyển qua web
+      <strong>Xôi Thịt Nhà Mui Miu</strong>
+    </div>
+
+    <div class="xoi-thit-question">
+      Bạn có muốn tiếp tục không?
+    </div>
+
+    <div class="xoi-thit-buttons">
+      <button id="xoiThitYes" class="xoi-thit-yes" type="button">Có</button>
+      <button id="xoiThitNo" class="xoi-thit-no" type="button">Không</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+const xoiThitLink = document.getElementById("xoiThitLink");
+const xoiThitPopup = document.getElementById("xoiThitPopup");
+const xoiThitYes = document.getElementById("xoiThitYes");
+const xoiThitNo = document.getElementById("xoiThitNo");
+
+
+/* ==================================================
+   KIỂM TRA PHẦN TỬ
+================================================== */
+
+if (
+  xoiThitLink &&
+  xoiThitPopup &&
+  xoiThitYes &&
+  xoiThitNo
+) {
+
+
+  /* ==================================================
+     ẤN XÔI THỊT
+  ================================================== */
+
+  xoiThitLink.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    xoiThitPopup.style.display = "flex";
+
+  });
+
+
+  /* ==================================================
+     CÓ → CHUYỂN WEB
+  ================================================== */
+
+  xoiThitYes.addEventListener("click", function() {
+
+    window.location.href = "https://tiemnhamiumiu.neocities.org/";
+
+  });
+
+
+  /* ==================================================
+     KHÔNG → ĐÓNG BẢNG
+  ================================================== */
+
+  xoiThitNo.addEventListener("click", function() {
+
+    xoiThitPopup.style.display = "none";
+
+  });
+
+
+  /* ==================================================
+     ẤN RA NGOÀI BẢNG → ĐÓNG
+  ================================================== */
+
+  xoiThitPopup.addEventListener("click", function(event) {
+
+    if (
+      event.target ===
+      xoiThitPopup
+    ) {
+
+      xoiThitPopup.style.display = "none";
+
+    }
+
+  });
+
+}
+
+</script>
+
+
+</body>
+</html>

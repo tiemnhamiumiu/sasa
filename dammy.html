@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Truyện Đam Mỹ</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css?v=12"
+  >
+<link rel="icon" type="image/png" href="codetruyen/icon.jpg">
+
+</head>
+
+<body>
+
+
+<header class="menu">
+
+  <a href="index.html">
+    Trang chủ
+  </a>
+
+  <a href="ngontinh.html">
+    Ngôn tình
+  </a>
+
+  <a href="dammy.html">
+    Đam mỹ
+  </a>
+
+    <a href="cotrang.html">Cổ trang</a>
+  <a href="https://tiemnhamiumiu.neocities.org/" id="xoiThitLink">Xôi Thịt</a>
+
+</header>
+
+
+<h2 style="
+  text-align:center;
+  color:#ff5722;
+  margin:15px;
+">
+  Truyện Đam Mỹ
+</h2>
+
+
+<div
+  class="container"
+  id="list"
+></div>
+
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+
+
+<script>
+
+const list =
+  document.getElementById("list");
+
+const STORY_TYPE = "dammy";
+
+
+/* ==================================================
+   CẮT TÊN
+================================================== */
+
+function clampBookTitle(element) {
+
+  const fullTitle =
+    String(
+      element.dataset.fullTitle || ""
+    ).trim();
+
+
+  if (!fullTitle) {
+
+    element.textContent = "";
+
+    return;
+
+  }
+
+
+  element.textContent =
+    fullTitle;
+
+  element.style.whiteSpace =
+    "normal";
+
+  element.style.overflow =
+    "visible";
+
+  element.style.height =
+    "auto";
+
+  element.style.maxHeight =
+    "none";
+
+
+  const style =
+    window.getComputedStyle(
+      element
+    );
+
+
+  const lineHeight =
+    parseFloat(
+      style.lineHeight
+    ) || 21;
+
+
+  const paddingTop =
+    parseFloat(
+      style.paddingTop
+    ) || 0;
+
+
+  const paddingBottom =
+    parseFloat(
+      style.paddingBottom
+    ) || 0;
+
+
+  const maxHeight =
+    lineHeight * 2 +
+    paddingTop +
+    paddingBottom;
+
+
+  if (
+    element.scrollHeight <=
+    maxHeight + 1
+  ) {
+
+    return;
+
+  }
+
+
+  const words =
+    fullTitle.split(/\s+/);
+
+
+  let bestText =
+    "";
+
+
+  for (
+    let i = 0;
+    i < words.length;
+    i++
+  ) {
+
+    const candidate =
+      words
+        .slice(0, i + 1)
+        .join(" ") +
+      "...";
+
+
+    element.textContent =
+      candidate;
+
+
+    if (
+      element.scrollHeight <=
+      maxHeight + 1
+    ) {
+
+      bestText =
+        words
+          .slice(0, i + 1)
+          .join(" ");
+
+    }
+    else {
+
+      break;
+
+    }
+
+  }
+
+
+  if (!bestText) {
+
+    bestText =
+      words[0] || "";
+
+  }
+
+
+  element.textContent =
+    bestText + "...";
+
+
+  element.style.height =
+    maxHeight + "px";
+
+  element.style.maxHeight =
+    maxHeight + "px";
+
+  element.style.overflow =
+    "hidden";
+
+}
+
+
+/* ==================================================
+   TẤT CẢ TÊN (dùng khi đổi kích thước cửa sổ)
+================================================== */
+
+function clampAllBookTitles() {
+
+  document
+    .querySelectorAll(".book-title")
+    .forEach(element => {
+
+      clampBookTitle(element);
+
+    });
+
+}
+
+
+/* ==================================================
+   VIEW
+================================================== */
+
+function refreshViewCounts() {
+
+  if (
+    typeof loadViewCounts ===
+    "function"
+  ) {
+
+    loadViewCounts();
+
+  }
+
+}
+
+
+/* ==================================================
+   RENDER TỪNG ĐỢT
+
+   Thay vì vẽ cả nghìn truyện cùng lúc, chỉ vẽ
+   PAGE_SIZE truyện đầu. Cuộn xuống gần cuối
+   thì tự vẽ thêm đợt tiếp theo.
+================================================== */
+
+const PAGE_SIZE = 40;
+
+let currentData = [];
+let shown = 0;
+
+
+/* ---------- 1 thẻ truyện ---------- */
+
+function makeCard(item) {
+
+  return `
+
+    <a
+      class="book"
+      href="detail.html?id=${item.id}"
+    >
+
+      <img
+        src="${item.image}"
+        alt="${String(item.title).replace(/"/g, '&quot;')}"
+        loading="lazy"
+        decoding="async"
+      >
+
+      <div class="view-count"></div>
+
+      <h2
+        class="book-title"
+        data-full-title="${String(item.title)
+          .replace(/"/g, '&quot;')}"
+      >
+        ${item.title}
+      </h2>
+
+    </a>
+
+  `;
+
+}
+
+
+/* ---------- Vẽ thêm 1 đợt ---------- */
+
+function renderMore() {
+
+  const next =
+    currentData.slice(
+      shown,
+      shown + PAGE_SIZE
+    );
+
+  if (!next.length) {
+    return;
+  }
+
+  const before =
+    list.children.length;
+
+  /* Gắn HTML vào trang 1 lần cho cả đợt */
+
+  list.insertAdjacentHTML(
+    "beforeend",
+    next.map(makeCard).join("")
+  );
+
+  shown += next.length;
+
+  const newCards =
+    Array.from(list.children)
+      .slice(before);
+
+  requestAnimationFrame(() => {
+
+    /* Chỉ cắt tên cho các thẻ vừa thêm */
+
+    newCards.forEach(card => {
+
+      const title =
+        card.querySelector(
+          ".book-title"
+        );
+
+      if (title) {
+        clampBookTitle(title);
+      }
+
+    });
+
+    refreshViewCounts();
+
+    /* Nếu màn hình còn trống thì vẽ tiếp */
+
+    fillViewport();
+
+  });
+
+}
+
+
+/* ---------- Còn trống màn hình → vẽ tiếp ---------- */
+
+function fillViewport() {
+
+  if (shown >= currentData.length) {
+    return;
+  }
+
+  if (
+    sentinel.getBoundingClientRect().top <
+    window.innerHeight + 800
+  ) {
+
+    renderMore();
+
+  }
+
+}
+
+
+/* ---------- Vẽ lại từ đầu ---------- */
+
+function render(data) {
+
+  currentData =
+    data
+      .filter(
+        item =>
+          item &&
+          item.type ===
+          STORY_TYPE
+      )
+      .sort(
+        (a, b) =>
+          b.id - a.id
+      );
+
+  shown = 0;
+
+  list.innerHTML = "";
+
+  renderMore();
+
+}
+
+
+/* ==================================================
+   CUỘN GẦN CUỐI → VẼ THÊM
+================================================== */
+
+const sentinel =
+  document.createElement("div");
+
+sentinel.style.height = "1px";
+
+list.after(sentinel);
+
+
+new IntersectionObserver(
+  entries => {
+
+    if (entries[0].isIntersecting) {
+      renderMore();
+    }
+
+  },
+  {
+    rootMargin: "800px"
+  }
+).observe(sentinel);
+
+
+render(stories);
+
+
+/* ==================================================
+   RESIZE
+================================================== */
+
+let resizeTimer;
+
+window.addEventListener(
+  "resize",
+  function () {
+
+    clearTimeout(
+      resizeTimer
+    );
+
+    resizeTimer =
+      setTimeout(
+        clampAllBookTitles,
+        100
+      );
+
+  }
+);
+
+</script>
+
+
+
+<!-- ==================================================
+     POPUP CHUYỂN SANG WEB XÔI THỊT
+================================================== -->
+
+<div
+  id="xoiThitPopup"
+  class="xoi-thit-overlay"
+  style="display:none;"
+>
+
+  <div class="xoi-thit-box">
+
+      <img
+    src="codetruyen/icon.jpg"
+    alt="Truyện Mới Miu Miu"
+    class="xoi-thit-icon"
+  >
+
+  <span class="xoi-thit-arrow">→</span>
+
+  <img
+    src="codetruyen/iconxoi.jpg"
+    alt="Xôi Thịt Nhà Mui Miu"
+    class="xoi-thit-icon"
+  >
+
+    <div class="xoi-thit-text">
+      Bạn đang chuyển qua web
+      <strong>Xôi Thịt Nhà Mui Miu</strong>
+    </div>
+
+    <div class="xoi-thit-question">
+      Bạn có muốn tiếp tục không?
+    </div>
+
+    <div class="xoi-thit-buttons">
+
+      <button
+        id="xoiThitYes"
+        class="xoi-thit-yes"
+      >
+        Có
+      </button>
+
+      <button
+        id="xoiThitNo"
+        class="xoi-thit-no"
+      >
+        Không
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ==================================================
+     POPUP SCRIPT
+================================================== -->
+
+<script>
+
+const xoiThitLink =
+  document.getElementById("xoiThitLink");
+
+const xoiThitPopup =
+  document.getElementById("xoiThitPopup");
+
+const xoiThitYes =
+  document.getElementById("xoiThitYes");
+
+const xoiThitNo =
+  document.getElementById("xoiThitNo");
+
+
+/* ==================================================
+   ẤN XÔI THỊT
+================================================== */
+
+xoiThitLink.addEventListener(
+  "click",
+  function(event) {
+
+    event.preventDefault();
+
+    xoiThitPopup.style.display = "flex";
+
+  }
+);
+
+
+/* ==================================================
+   CÓ → CHUYỂN WEB
+================================================== */
+
+xoiThitYes.addEventListener(
+  "click",
+  function() {
+
+    window.location.href =
+      "https://tiemnhamiumiu.neocities.org/";
+
+  }
+);
+
+
+/* ==================================================
+   KHÔNG → ĐÓNG BẢNG
+================================================== */
+
+xoiThitNo.addEventListener(
+  "click",
+  function() {
+
+    xoiThitPopup.style.display = "none";
+
+  }
+);
+
+
+/* ==================================================
+   ẤN RA NGOÀI BẢNG → ĐÓNG
+================================================== */
+
+xoiThitPopup.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target ===
+      xoiThitPopup
+    ) {
+
+      xoiThitPopup.style.display = "none";
+
+    }
+
+  }
+);
+
+</script>
+</body>
+</html>
