@@ -8,7 +8,9 @@
    - Xem đủ 10 phút: chạm nền trang mở TikTok -> Lazada
    - Nhớ vị trí xem + popup "Xem tiếp"
    - Mốc xem, tốc độ, tua 10s, toàn màn hình
-   - Cảnh báo khi mở bằng Messenger, popup Xôi Thịt
+   - Mở bằng trình duyệt Facebook / Messenger: yêu cầu chuyển
+     sang Chrome / Safari (Android tự mở Chrome)
+   - Popup Xôi Thịt
 ========================================================= */
 
 (function () {
@@ -36,7 +38,7 @@
         }
     };
 
-    /* Khung Facebook luôn dựng ở 480 x 355 rồi thu phóng cho vừa màn hình */
+    /* Khung Facebook dựng ở kích thước cố định rồi thu phóng cho vừa màn hình */
     const FB_DESIGN_WIDTH = 450;
     const FB_DESIGN_HEIGHT = 450;
 
@@ -44,10 +46,9 @@
        Canh xong thì đổi lại false. */
     const FACEBOOK_ZONE_DEBUG = false;
 
-    /* PHÓNG TO để cắt viền trắng quanh bài (hệ 480 x 355).
+    /* PHÓNG TO để cắt viền trắng quanh bài.
        left / right = số px viền trắng bị cắt ở mỗi bên.
-       Còn thấy viền trắng bên nào thì tăng số bên đó, thấy mất hình thì giảm. */
-    /* top = số px cắt ở phía trên để ẨN dòng link https://s.shopee.vn/... */
+       top = số px cắt ở phía trên để ẨN dòng link https://s.shopee.vn/... */
     const FACEBOOK_CROP = { left: 14, right: 2, top: 40 };
 
     /* ẢNH CHÈN LÊN TRÊN CÙNG (chỉ để nhìn, bấm xuyên qua xuống bài Facebook).
@@ -59,13 +60,16 @@
         height: 350
     };
 
-    /* VÙNG ĐƯỢC PHÉP BẤM (hệ 480 x 355) = thẻ xem trước Shopee trong bài.
+    /* VÙNG ĐƯỢC PHÉP BẤM (hệ 480 x 355).
        Chỉ bấm được trong hình chữ nhật này, mọi chỗ khác bị chặn.
        Nếu vùng đỏ lệch thẻ thì chỉnh left / top / width / height. */
-const FACEBOOK_CLICK_ZONE = {
-    shopee:     { left: 0, top: 0, width: 700, height: 500 },
-    shopeefood: { left: 0, top: 0, width: 480, height: 500 }
-};
+    const FACEBOOK_CLICK_ZONE = {
+        shopee:     { left: 0, top: 0, width: 700, height: 500 },
+        shopeefood: { left: 0, top: 0, width: 480, height: 500 }
+    };
+
+    /* Phóng riêng theo chiều dọc để cắt khoảng trắng phía dưới */
+    const FACEBOOK_VERTICAL_ZOOM = 1.18;
 
     const TIKTOK_URL = "https://vt.tiktok.com/ZS9ff2HHvvJve-waSqH/";
     const LAZADA_URL = "";
@@ -114,6 +118,37 @@ const FACEBOOK_CLICK_ZONE = {
 
     const positionKey = "phim_position_" + movieId;
     const viewSessionKey = "phim_view_session_" + movieId;
+
+
+    /* =====================================================
+       TRÌNH DUYỆT FACEBOOK / MESSENGER -> CHUYỂN SANG CHROME / SAFARI
+       (đặt trước phần kiểm tra thẻ phim để Android luôn được chuyển)
+    ===================================================== */
+
+    function isMessengerBrowser() {
+
+        const ua = navigator.userAgent || navigator.vendor || "";
+
+        return /FB_IAB|FBAN|FBAV|Messenger|Orca-Android/i.test(ua);
+    }
+
+    function isAndroid() {
+        return /Android/i.test(navigator.userAgent || "");
+    }
+
+    /* Android: mở trang bằng Chrome thông qua intent */
+    function openInChrome() {
+
+        const url = window.location;
+
+        const intent =
+            "intent://" + url.host + url.pathname + url.search +
+            "#Intent;scheme=https;package=com.android.chrome;" +
+            "S.browser_fallback_url=" + encodeURIComponent(url.href) +
+            ";end";
+
+        window.location.href = intent;
+    }
 
 
     /* =====================================================
@@ -329,15 +364,8 @@ const FACEBOOK_CLICK_ZONE = {
 
 
     /* =====================================================
-       CẢNH BÁO MESSENGER
+       POPUP CHUYỂN SANG TRÌNH DUYỆT (Facebook / Messenger)
     ===================================================== */
-
-    function isMessengerBrowser() {
-
-        const ua = navigator.userAgent || navigator.vendor || "";
-
-        return /FB_IAB\/MESSENGER|FBAN\/Messenger|MessengerForiOS|MessengerLite|Orca-Android/i.test(ua);
-    }
 
     function copyPageLink(button) {
 
@@ -404,10 +432,21 @@ const FACEBOOK_CLICK_ZONE = {
             return;
         }
 
+        const android = isAndroid();
+
+        const chromeButton = android
+            ? '<button id="messengerChromeBtn" class="movie-popup-btn primary" type="button">🌐 Mở bằng Chrome</button>'
+            : '';
+
+        const copyClass = android ? "secondary" : "primary";
+
         const popup = document.createElement("div");
 
         popup.id = "messengerNoticePopup";
         popup.className = "movie-popup-overlay";
+
+        /* nền đặc hơn để che hẳn bảng quảng cáo phía sau */
+        popup.style.background = "rgba(0, 0, 0, 0.92)";
 
         popup.innerHTML = `
 
@@ -415,12 +454,12 @@ const FACEBOOK_CLICK_ZONE = {
 
                 <div class="movie-popup-icon">⚠️</div>
 
-                <div class="movie-popup-title">Bạn đang mở bằng Messenger</div>
+                <div class="movie-popup-title">Bạn đang mở bằng trình duyệt Facebook</div>
 
                 <div class="movie-popup-text">
-                    Trình duyệt trong Messenger <strong>không ghi nhận được quảng cáo Shopee</strong>,
+                    Trình duyệt trong Facebook / Messenger <strong>không ghi nhận được quảng cáo Shopee</strong>,
                     nên bạn sẽ không mở khóa được phim.
-                    Hãy chuyển sang trình duyệt (Chrome / Safari) để xem bình thường.
+                    Hãy chuyển sang Chrome / Safari để xem bình thường.
                 </div>
 
                 <div class="movie-popup-steps">
@@ -432,12 +471,10 @@ const FACEBOOK_CLICK_ZONE = {
 
                 <div class="movie-popup-buttons">
 
-                    <button id="messengerCopyBtn" class="movie-popup-btn primary" type="button">
-                        📋 Sao chép link
-                    </button>
+                    ${chromeButton}
 
-                    <button id="messengerCloseBtn" class="movie-popup-btn secondary" type="button">
-                        Đã hiểu
+                    <button id="messengerCopyBtn" class="movie-popup-btn ${copyClass}" type="button">
+                        📋 Sao chép link
                     </button>
 
                 </div>
@@ -449,7 +486,7 @@ const FACEBOOK_CLICK_ZONE = {
         document.body.appendChild(popup);
 
         const copyBtn = document.getElementById("messengerCopyBtn");
-        const closeBtn = document.getElementById("messengerCloseBtn");
+        const chromeBtn = document.getElementById("messengerChromeBtn");
 
         if (copyBtn) {
             copyBtn.addEventListener("click", function () {
@@ -457,10 +494,8 @@ const FACEBOOK_CLICK_ZONE = {
             });
         }
 
-        if (closeBtn) {
-            closeBtn.addEventListener("click", function () {
-                popup.remove();
-            });
+        if (chromeBtn) {
+            chromeBtn.addEventListener("click", openInChrome);
         }
     }
 
@@ -721,18 +756,16 @@ const FACEBOOK_CLICK_ZONE = {
 
         zoom.className = "fbZoom";
 
-// Phóng lớn riêng theo chiều dọc để cắt khoảng trắng phía dưới
-const FACEBOOK_VERTICAL_ZOOM = 1.18;
+        zoom.style.transform =
+            "scale(" + zoomScale + ", " +
+            (zoomScale * FACEBOOK_VERTICAL_ZOOM) + ") translate(-" +
+            FACEBOOK_CROP.left + "px, -" +
+            FACEBOOK_CROP.top + "px)";
 
-zoom.style.transform =
-    "scale(" + zoomScale + ", " +
-    (zoomScale * FACEBOOK_VERTICAL_ZOOM) + ") translate(-" +
-    FACEBOOK_CROP.left + "px, -" +
-    FACEBOOK_CROP.top + "px)";
+        /* Cắt phần thừa bên ngoài khung */
+        frame.style.overflow = "hidden";
+        frame.style.position = "relative";
 
-// Cắt phần thừa bên ngoài khung
-frame.style.overflow = "hidden";
-frame.style.position = "relative";
         zoom.appendChild(iframe);
         scaler.appendChild(zoom);
 
@@ -1394,6 +1427,11 @@ frame.style.position = "relative";
     function maybeShowResume() {
 
         if (resumeShown || !movieUnlocked || !mediaReady) {
+            return;
+        }
+
+        /* Đang bị yêu cầu chuyển trình duyệt thì không hỏi xem tiếp */
+        if (isMessengerBrowser()) {
             return;
         }
 
@@ -2380,6 +2418,11 @@ frame.style.position = "relative";
 
     function init() {
 
+        /* Android + trình duyệt Facebook/Messenger: tự mở Chrome */
+        if (isMessengerBrowser() && isAndroid()) {
+            openInChrome();
+        }
+
         resetDailyDataIfNeeded();
 
         card.classList.add("is-loading");
@@ -2395,8 +2438,11 @@ frame.style.position = "relative";
 
             lockMovie();
             startFacebookAdFlow();
-            showMessengerNotice();
         }
+
+        /* Đang mở bằng trình duyệt Facebook/Messenger: yêu cầu chuyển sang
+           Chrome/Safari (hiện cả với người đã mở khóa, popup chặn phía sau) */
+        showMessengerNotice();
 
         initXoiThitPopup();
         initBackgroundRedirect();
