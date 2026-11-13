@@ -688,6 +688,7 @@ body.movieLocked {
   font-weight: 700;
 }
 
+
 /* Khung Facebook dựng ở 480x355 rồi thu phóng bằng JS */
 .facebookAdFrame {
   position: relative;
@@ -715,6 +716,30 @@ body.movieLocked {
   transform-origin: 0 0;
 }
 
+/* Ảnh phủ lên thẻ xem trước, bấm xuyên qua được */
+.facebookAdFrame .fbCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 480px;
+  z-index: 4;
+  pointer-events: none;
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.facebookAdFrame .fbZoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 480px;
+  height: 355px;
+  overflow: visible;
+  transform-origin: 0 0;
+}
+
 .facebookAdFrame iframe {
   display: block;
   width: 480px;
@@ -726,9 +751,6 @@ body.movieLocked {
   background: #ffffff;
 }
 
-.facebookAdFrame .fbBuyNow {
-  animation: fbBuyNowPulse 1.2s ease-in-out infinite;
-}
 
 .facebookAdReturnMessage {
   flex-shrink: 0;
@@ -810,11 +832,6 @@ body.movieLocked {
 @keyframes facebookFinishedShow {
   from { opacity: 0; transform: translateY(7px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fbBuyNowPulse {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.04); }
 }
 
 

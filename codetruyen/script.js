@@ -4,6 +4,7 @@
    Dựng lại từ script.js + audio.js của web truyện:
    - Player YouTube HIỆN HÌNH trong thẻ phim (điều khiển tự làm)
    - Cổng quảng cáo Facebook 2 bước (Shopee -> ShopeeFood)
+     dạng THẺ SẢN PHẨM nhỏ gọn, bấm vào mở bài Facebook
    - Xem đủ 10 phút: chạm nền trang mở TikTok -> Lazada
    - Nhớ vị trí xem + popup "Xem tiếp"
    - Mốc xem, tốc độ, tua 10s, toàn màn hình
@@ -23,35 +24,48 @@
        CẤU HÌNH
     ===================================================== */
 
+    /* url = link BÀI FACEBOOK (bài có thẻ xem trước s.shopee.vn) */
     const FACEBOOK_ADS = {
         shopee: {
             title: "Quảng cáo Shopee",
-            url: "https://www.facebook.com/photo/?fbid=122136975747467824&set=pcb.122136975897467824"
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid03WuEfswyLJv9MeBfepsmqU9dSGBoYAEVTFew9VrU1Dgoc52U1XDWnHfWmEDwDRTml&id=61594034743775&locale=vi_VN"
         },
         shopeefood: {
             title: "Quảng cáo ShopeeFood",
-            url: "https://www.facebook.com/photo/?fbid=122136976137467824&set=pcb.122136976311467824"
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0vFZruXeCQhF5oqkQghUPKaKV5wKMP3WYxCwp6DAy4fErZQYWkAamoKqNbKBMt7URl&id=61594034743775&locale=vi_VN"
         }
     };
 
     /* Khung Facebook luôn dựng ở 480 x 355 rồi thu phóng cho vừa màn hình */
-    const FB_DESIGN_WIDTH = 480;
-    const FB_DESIGN_HEIGHT = 355;
+    const FB_DESIGN_WIDTH = 450;
+    const FB_DESIGN_HEIGHT = 450;
 
-    /* true = vùng chặn hiện màu đỏ để canh chỉnh */
+    /* true = vùng bị chặn hiện màu đỏ để canh chỉnh.
+       Canh xong thì đổi lại false. */
     const FACEBOOK_ZONE_DEBUG = false;
 
-    /* Vùng được phép bấm trong bài Facebook (hệ 480 x 355) */
-    const FACEBOOK_CLICK_ZONE = {
-        shopee: {
-            left: 10, width: 215,
-            rows: [ { top: 71, height: 14 } ]
-        },
-        shopeefood: {
-            left: 10, width: 225,
-            rows: [ { top: 71, height: 14 } ]
-        }
+    /* PHÓNG TO để cắt viền trắng quanh bài (hệ 480 x 355).
+       left / right = số px viền trắng bị cắt ở mỗi bên.
+       Còn thấy viền trắng bên nào thì tăng số bên đó, thấy mất hình thì giảm. */
+    /* top = số px cắt ở phía trên để ẨN dòng link https://s.shopee.vn/... */
+    const FACEBOOK_CROP = { left: 14, right: 2, top: 40 };
+
+    /* ẢNH CHÈN LÊN TRÊN CÙNG (chỉ để nhìn, bấm xuyên qua xuống bài Facebook).
+       Đường dẫn tính từ trang phim: trang nằm trong cotrang/, ảnh nằm trong codetruyen/.
+       height = chiều cao vùng ảnh của thẻ xem trước (hệ 480 x 355). */
+    const FACEBOOK_COVER = {
+        shopee: "../codetruyen/anhs.jpg",
+        shopeefood: "../codetruyen/anhf.jpg",
+        height: 350
     };
+
+    /* VÙNG ĐƯỢC PHÉP BẤM (hệ 480 x 355) = thẻ xem trước Shopee trong bài.
+       Chỉ bấm được trong hình chữ nhật này, mọi chỗ khác bị chặn.
+       Nếu vùng đỏ lệch thẻ thì chỉnh left / top / width / height. */
+const FACEBOOK_CLICK_ZONE = {
+    shopee:     { left: 0, top: 0, width: 700, height: 500 },
+    shopeefood: { left: 0, top: 0, width: 480, height: 500 }
+};
 
     const TIKTOK_URL = "https://vt.tiktok.com/ZS9ff2HHvvJve-waSqH/";
     const LAZADA_URL = "";
@@ -670,6 +684,8 @@
             "scale(" + (frame.clientWidth / FB_DESIGN_WIDTH) + ")";
     }
 
+    /* Nhúng bài Facebook, rồi phủ lớp chặn lên MỌI chỗ trừ thẻ xem trước
+       Shopee. Bấm vào thẻ = đi thẳng sang Shopee. */
     function createFacebookIframe(postUrl) {
 
         const frame = document.getElementById("facebookAdFrame");
@@ -697,7 +713,42 @@
         iframe.scrolling = "no";
         iframe.frameBorder = "0";
 
-        scaler.appendChild(iframe);
+        /* Lớp phóng to: đẩy bài sang trái rồi phóng lên cho viền trắng nằm ngoài khung */
+        const zoom = document.createElement("div");
+
+        const cropWidth = FB_DESIGN_WIDTH - FACEBOOK_CROP.left - FACEBOOK_CROP.right;
+        const zoomScale = FB_DESIGN_WIDTH / cropWidth;
+
+        zoom.className = "fbZoom";
+
+// Phóng lớn riêng theo chiều dọc để cắt khoảng trắng phía dưới
+const FACEBOOK_VERTICAL_ZOOM = 1.18;
+
+zoom.style.transform =
+    "scale(" + zoomScale + ", " +
+    (zoomScale * FACEBOOK_VERTICAL_ZOOM) + ") translate(-" +
+    FACEBOOK_CROP.left + "px, -" +
+    FACEBOOK_CROP.top + "px)";
+
+// Cắt phần thừa bên ngoài khung
+frame.style.overflow = "hidden";
+frame.style.position = "relative";
+        zoom.appendChild(iframe);
+        scaler.appendChild(zoom);
+
+        /* Ảnh chèn lên trên cùng: chỉ để nhìn, pointer-events:none nên bấm xuyên xuống bài */
+        const coverUrl = FACEBOOK_COVER[facebookAdCurrentType];
+
+        if (coverUrl) {
+
+            const cover = document.createElement("div");
+
+            cover.className = "fbCover";
+            cover.style.backgroundImage = 'url("' + coverUrl + '")';
+            cover.style.height = FACEBOOK_COVER.height + "px";
+
+            scaler.appendChild(cover);
+        }
 
         const zone = FACEBOOK_CLICK_ZONE[facebookAdCurrentType];
 
@@ -731,40 +782,14 @@
                 scaler.appendChild(mask);
             };
 
-            let cursorY = 0;
+            const zoneRight = zone.left + zone.width;
+            const zoneBottom = zone.top + zone.height;
 
-            zone.rows.forEach(function (row) {
-
-                addMask(cursorY, 0, FB_DESIGN_WIDTH, row.top - cursorY);
-                addMask(row.top, 0, zone.left, row.height);
-                addMask(row.top, zone.left + zone.width, FB_DESIGN_WIDTH - (zone.left + zone.width), row.height);
-
-                cursorY = row.top + row.height;
-            });
-
-            addMask(cursorY, 0, FB_DESIGN_WIDTH, FB_DESIGN_HEIGHT - cursorY);
-
-            const firstRow = zone.rows[0];
-            const lastRow = zone.rows[zone.rows.length - 1];
-
-            const cta = document.createElement("div");
-
-            cta.className = "fbBuyNow";
-            cta.textContent = "🛒 XEM NGAY";
-
-            cta.style.cssText =
-                "position:absolute;z-index:6;pointer-events:none;" +
-                "display:flex;align-items:center;justify-content:center;" +
-                "border-radius:8px;" +
-                "background:linear-gradient(135deg,#ff7043 0%,#ff5722 100%);" +
-                "color:#ffffff;font-size:18px;font-weight:700;letter-spacing:0.5px;" +
-                "box-shadow:0 4px 12px rgba(255,87,34,0.45);" +
-                "top:" + firstRow.top + "px;" +
-                "left:" + zone.left + "px;" +
-                "width:" + zone.width + "px;" +
-                "height:" + (lastRow.top + lastRow.height - firstRow.top) + "px;";
-
-            scaler.appendChild(cta);
+            /* 4 mảnh chặn bao quanh vùng được bấm */
+            addMask(0, 0, FB_DESIGN_WIDTH, zone.top);
+            addMask(zone.top, 0, zone.left, zone.height);
+            addMask(zone.top, zoneRight, FB_DESIGN_WIDTH - zoneRight, zone.height);
+            addMask(zoneBottom, 0, FB_DESIGN_WIDTH, FB_DESIGN_HEIGHT - zoneBottom);
         }
 
         frame.appendChild(scaler);
@@ -873,7 +898,7 @@
 
         showFacebookAdStep(
             "shopee",
-            "Quảng cáo Shopee <br> Vui lòng nhấn vào Mua Ngay",
+            "Quảng cáo Shopee <br> Vui lòng nhấn vào ảnh sản phẩm",
             "Bước 1/2 — Hãy mở quảng cáo và ở lại ít nhất 3 giây rồi quay lại",
             '👉 <strong>Hãy mở quảng cáo Shopee và ở lại ít nhất 3 giây rồi quay lại đây.</strong><br>' +
             'Đây là bước 1/2. Sau khi quay lại, hệ thống sẽ kiểm tra thời gian.',
@@ -885,7 +910,7 @@
 
         showFacebookAdStep(
             "shopeefood",
-            "Quảng cáo ShopeeFood <br> Vui lòng nhấn vào Mua Ngay",
+            "Quảng cáo ShopeeFood <br> Vui lòng nhấn vào ảnh sản phẩm",
             "Bước 2/2 — Hãy mở quảng cáo rồi quay lại",
             '👉 <strong>Hãy mở quảng cáo ShopeeFood rồi quay lại đây.</strong><br>' +
             'Đây là bước 2/2. Sau khi quay lại, hệ thống sẽ kiểm tra và hoàn tất.',
