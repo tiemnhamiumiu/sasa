@@ -43,9 +43,9 @@ const stories = [
     desc: ``
   },{
     id: 7,
-    title: "Thiên Kim Chỉ Muốn Ngủ Bên Hồ",
+    title: "Thiên Kim Thật Chỉ Muốn Ngủ",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/thien-kim-chi-muon-ngu-ben-ho.png",
-    link: "ngontinh/thien-kim-chi-muon-ngu-ben-ho.html",
+    link: "ngontinh/thien-kim-that-chi-muon-ngu.html",
     type: "ngontinh",
     desc: ``
   },{
