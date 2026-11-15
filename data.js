@@ -20,27 +20,6 @@ const stories = [
     link: "cotrang/quy-nhan-pha-an.html",
     type: "cotrang",
     desc: ``
-  },{
-    id: 4,
-    title: "[Hoàn][Cao H] ",
-    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/.jpg",
-    link: "ngontinh/",
-    type: "ngontinh",
-    desc: ``
-  },{
-    id: 5,
-    title: "",
-    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/.jpg",
-    link: "dammy/",
-    type: "dammy",
-    desc: ``
-  },{
-    id: 6,
-    title: "",
-    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/.jpg",
-    link: "cotrang/",
-    type: "cotrang",
-    desc: ``
   },
 
 
