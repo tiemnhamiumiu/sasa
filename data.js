@@ -20,6 +20,48 @@ const stories = [
     link: "cotrang/quy-nhan-pha-an.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 4,
+    title: "Xuyên Thành Vợ Mạo Nhận Ân Nhân Của Ông Trùm",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/xuyen-thanh-vo-mao-nhan-an-nhan-cua-ong-trum.png",
+    link: "ngontinh/xuyen-thanh-vo-mao-nhan-an-nhan-cua-ong-trum.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 5,
+    title: "Ba Năm Giả Làm Trai Thẳng",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/ba-nam-gia-lam-trai-thang.png",
+    link: "dammy/ba-nam-gia-lam-trai-thang.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 6,
+    title: "Bảo Quan Cung Chiếu Công Chúa Ngọc",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/bao-quan-cung-chieu-cong-chua-ngoc.png",
+    link: "cotrang/bao-quan-cung-chieu-cong-chua-ngoc.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 7,
+    title: "Thiên Kim Chỉ Muốn Ngủ Bên Hồ",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/thien-kim-chi-muon-ngu-ben-ho.png",
+    link: "ngontinh/thien-kim-chi-muon-ngu-ben-ho.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 8,
+    title: "Gả Cho Tướng Quân Về Quê",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/ga-cho-tuong-quan-ve-que.png",
+    link: "dammy/ga-cho-tuong-quan-ve-que.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 9,
+    title: "Sơn Chủ Thông Thường Có Kim",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/son-chu-thong-thuong-co-kim.png",
+    link: "cotrang/son-chu-thong-thuong-co-kim.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
