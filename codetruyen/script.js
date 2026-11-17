@@ -30,11 +30,11 @@
     const FACEBOOK_ADS = {
         shopee: {
             title: "Quảng cáo Shopee",
-            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid03WuEfswyLJv9MeBfepsmqU9dSGBoYAEVTFew9VrU1Dgoc52U1XDWnHfWmEDwDRTml&id=61594034743775&locale=vi_VN"
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0ZH5V2Br8VyHSxnYNtaDz47FV9ZidnqCW28xinpzASca9WdETixdxBhJ1cqVn8Lz5l&id=61594034743775"
         },
         shopeefood: {
             title: "Quảng cáo ShopeeFood",
-            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0vFZruXeCQhF5oqkQghUPKaKV5wKMP3WYxCwp6DAy4fErZQYWkAamoKqNbKBMt7URl&id=61594034743775&locale=vi_VN"
+            url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02kY3Ymx9ZdRb2wKNPtMjQFBDWrcs1p56eKMcYUCyMtgZjpHmTNcg5RiHwURS2tdjnl&id=61594034743775"
         }
     };
 
@@ -71,7 +71,7 @@
     /* Phóng riêng theo chiều dọc để cắt khoảng trắng phía dưới */
     const FACEBOOK_VERTICAL_ZOOM = 1.18;
 
-    const TIKTOK_URL = "https://vt.tiktok.com/ZS9ff2HHvvJve-waSqH/";
+    const TIKTOK_URL = "https://vt.tiktok.com/ZS9fT21MBdGv8-RJUr5/";
     const LAZADA_URL = "";
 
     const XOI_THIT_URL = "https://tiemnhamiumiu.neocities.org/";

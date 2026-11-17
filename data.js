@@ -70,14 +70,14 @@ const stories = [
     type: "ngontinh",
     desc: ``
   },{
-    id: 10,
+    id: 11,
     title: "Núi Sông Làm Chứng",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/nui-song-lam-chung.png",
     link: "dammy/nui-song-lam-chung.html",
     type: "dammy",
     desc: ``
   },{
-    id: 11,
+    id: 12,
     title: "Nàng Thiếp Của Giang Nam Vương",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/nang-thiep-cua-giang-nam-vuong.png",
     link: "cotrang/nang-thiep-cua-giang-nam-vuong.html",
