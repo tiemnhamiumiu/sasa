@@ -83,6 +83,27 @@ const stories = [
     link: "cotrang/nang-thiep-cua-giang-nam-vuong.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 13,
+    title: "Thần Nông Nơi Phế Thổ",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/than-nong-noi-phe-tho.png",
+    link: "ngontinh/than-nong-noi-phe-tho.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 14,
+    title: "Lần Này Không Diễn Nữa",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/lan-nay-khong-dien-nua.png",
+    link: "dammy/lan-nay-khong-dien-nua.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 15,
+    title: "Thu Phí Giếng Trời, Nhặt Được Phu Quân",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/thu-phi-gieng-troi-nhat-duoc-phu-quan.png",
+    link: "cotrang/thu-phi-gieng-troi-nhat-duoc-phu-quan.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
