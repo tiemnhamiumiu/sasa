@@ -104,6 +104,27 @@ const stories = [
     link: "cotrang/thu-phi-gieng-troi-nhat-duoc-phu-quan.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 16,
+    title: "Tổng Tài Nghe Hết Lòng Tôi",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/tong-tai-nghe-het-long-toi.png",
+    link: "ngontinh/tong-tai-nghe-het-long-toi.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 17,
+    title: "Bước Đến Bên Người",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/buoc-den-ben-nguoi.png",
+    link: "dammy/buoc-den-ben-nguoi.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 18,
+    title: "Nữ Quốc Sĩ Giữ Lương Đạo",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/nu-quoc-si-giu-luong-dao.png",
+    link: "cotrang/nu-quoc-si-giu-luong-dao.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
