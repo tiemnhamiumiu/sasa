@@ -1,8 +1,10 @@
 /* =========================================================
-   PHIM.JS - TRANG XEM PHIM (YouTube)
+   PHIM.JS - TRANG XEM PHIM (YouTube hoặc file .mp4 / archive.org)
 
    Dựng lại từ script.js + audio.js của web truyện:
-   - Player YouTube HIỆN HÌNH trong thẻ phim (điều khiển tự làm)
+   - Player HIỆN HÌNH trong thẻ phim (điều khiển tự làm)
+     + Link YouTube  -> dùng YouTube IFrame API
+     + Link .mp4 / archive.org -> dùng thẻ <video>
    - Cổng quảng cáo Facebook 2 bước (Shopee -> ShopeeFood)
      dạng THẺ SẢN PHẨM nhỏ gọn, bấm vào mở bài Facebook
    - Xem đủ 10 phút: chạm nền trang mở TikTok -> Lazada
@@ -342,18 +344,25 @@
 
     /* =====================================================
        KIỂM TRA LINK VIDEO
+       - Link file trực tiếp (.mp4 / .webm / archive.org) -> thẻ <video>
+       - Link YouTube -> YouTube IFrame API
     ===================================================== */
 
-    const videoUrl = card.getAttribute("data-video") || "";
-    const videoId = getYouTubeId(videoUrl);
+    const videoUrl = (card.getAttribute("data-video") || "").trim();
 
-    if (!videoId) {
+    const isDirectVideo =
+        /\.(mp4|webm|ogv|m4v)(\?|#|$)/i.test(videoUrl) ||
+        /^https?:\/\/([^/]+\.)?archive\.org\//i.test(videoUrl);
 
-        console.error("phim.js: thiếu data-video hoặc link YouTube không hợp lệ:", videoUrl);
+    const videoId = isDirectVideo ? "" : getYouTubeId(videoUrl);
+
+    if (!isDirectVideo && !videoId) {
+
+        console.error("phim.js: thiếu data-video hoặc link video không hợp lệ:", videoUrl);
 
         card.classList.remove("is-loading");
 
-        showMovieError("Link video chưa đúng. Hãy dán link dạng https://youtu.be/ID_VIDEO");
+        showMovieError("Link video chưa đúng. Hãy dán link YouTube hoặc link file .mp4");
 
         if (playBtn) {
             playBtn.disabled = true;
@@ -1190,9 +1199,14 @@
        + video đang phát.
     ===================================================== */
 
+    /* Dùng chung cho cả YouTube và <video> */
     function isYouTubePlaying() {
 
         try {
+
+            if (isDirectVideo) {
+                return !!(player && !player.paused && !player.ended);
+            }
 
             return !!(
                 player &&
@@ -1329,6 +1343,7 @@
         "select",
         "label",
         "iframe",
+        "video",
         "#movieScreen",
         "#facebookAdsModal",
         "#movieResumePopup",
@@ -1567,19 +1582,38 @@
 
 
     /* =====================================================
-       ĐIỀU KHIỂN PLAYER YOUTUBE
+       ĐIỀU KHIỂN PLAYER (YouTube hoặc <video>)
     ===================================================== */
 
     function mediaPlay() {
 
-        if (player && movieUnlocked) {
+        if (!player || !movieUnlocked) {
+            return;
+        }
+
+        if (isDirectVideo) {
+
+            const result = player.play();
+
+            if (result && typeof result.catch === "function") {
+                result.catch(function () {});
+            }
+
+        } else {
+
             player.playVideo();
         }
     }
 
     function mediaPause() {
 
-        if (player) {
+        if (!player) {
+            return;
+        }
+
+        if (isDirectVideo) {
+            player.pause();
+        } else {
             player.pauseVideo();
         }
     }
@@ -1598,13 +1632,23 @@
             seconds = Math.min(seconds, duration);
         }
 
-        player.seekTo(seconds, true);
+        if (isDirectVideo) {
+            player.currentTime = seconds;
+        } else {
+            player.seekTo(seconds, true);
+        }
     }
 
     function mediaGetCurrentTime() {
 
         try {
-            return (player && player.getCurrentTime()) || 0;
+
+            if (!player) {
+                return 0;
+            }
+
+            return (isDirectVideo ? player.currentTime : player.getCurrentTime()) || 0;
+
         } catch (error) {
             return 0;
         }
@@ -1613,7 +1657,15 @@
     function mediaGetDuration() {
 
         try {
-            return (player && player.getDuration()) || 0;
+
+            if (!player) {
+                return 0;
+            }
+
+            const d = isDirectVideo ? player.duration : player.getDuration();
+
+            return Number.isFinite(d) ? d : 0;
+
         } catch (error) {
             return 0;
         }
@@ -1626,7 +1678,13 @@
         }
 
         try {
-            player.setPlaybackRate(speed);
+
+            if (isDirectVideo) {
+                player.playbackRate = speed;
+            } else {
+                player.setPlaybackRate(speed);
+            }
+
         } catch (error) {
             console.warn("Không đổi được tốc độ:", error);
         }
@@ -1729,6 +1787,11 @@
             return;
         }
 
+        /* Tránh chạy lại 2 lần khi <video> bắn cả "play" và "playing" */
+        if (card.classList.contains("is-playing") && updateTimer) {
+            return;
+        }
+
         card.classList.add("is-playing");
 
         everPlayed = true;
@@ -1821,6 +1884,60 @@
 
 
     /* =====================================================
+       TẠO PLAYER: FILE VIDEO TRỰC TIẾP (.mp4 / archive.org)
+    ===================================================== */
+
+    function createDirectPlayer() {
+
+        const holder = document.getElementById("youtubePlayer");
+
+        if (!holder || player) {
+            return;
+        }
+
+        const video = document.createElement("video");
+
+        video.id = "youtubePlayer";
+        video.src = videoUrl;
+        video.preload = "metadata";
+        video.controls = false;
+        video.playsInline = true;
+
+        video.setAttribute("playsinline", "");
+        video.setAttribute("webkit-playsinline", "");
+        video.setAttribute("controlsList", "nodownload noremoteplayback");
+        video.setAttribute("disablePictureInPicture", "");
+
+        video.style.cssText =
+            "width:100%;height:100%;display:block;background:#000;object-fit:contain;";
+
+        holder.parentNode.replaceChild(video, holder);
+
+        player = video;
+
+        video.addEventListener("loadedmetadata", onPlayerReady);
+
+        video.addEventListener("play", onMediaStartedPlaying);
+        video.addEventListener("playing", onMediaStartedPlaying);
+        video.addEventListener("pause", onMediaStoppedPlaying);
+
+        video.addEventListener("ended", function () {
+            localStorage.removeItem(positionKey);
+            onMediaStoppedPlaying();
+        });
+
+        video.addEventListener("error", function () {
+
+            console.error("Video Error:", video.error);
+
+            card.classList.remove("is-loading");
+
+            showMovieError("Không phát được video. Hãy tải lại trang hoặc thử lại sau.");
+        });
+    }
+
+
+    /* =====================================================
        TẠO PLAYER YOUTUBE
     ===================================================== */
 
@@ -1861,6 +1978,12 @@
     }
 
     function onPlayerReady() {
+
+        /* <video> có thể bắn loadedmetadata nhiều lần (khi tua) */
+        if (mediaReady) {
+            updateUI();
+            return;
+        }
 
         mediaReady = true;
 
@@ -2450,7 +2573,11 @@
 
         startWatchTimer();
 
-        loadYouTubeAPI();
+        if (isDirectVideo) {
+            createDirectPlayer();
+        } else {
+            loadYouTubeAPI();
+        }
     }
 
     if (document.readyState === "loading") {

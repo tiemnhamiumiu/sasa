@@ -36,7 +36,7 @@ const stories = [
     desc: ``
   },{
     id: 6,
-    title: "Bảo Quan Cung Chiếu Công Chúa Ngọc",
+    title: "Bạo Quân Cung Chiếu Công Chúa Ngọc",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/bao-quan-cung-chieu-cong-chua-ngoc.png",
     link: "cotrang/bao-quan-cung-chieu-cong-chua-ngoc.html",
     type: "cotrang",
