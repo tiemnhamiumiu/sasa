@@ -146,6 +146,27 @@ const stories = [
     link: "cotrang/21-ta-doi-lai-than-xac.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 22,
+    title: "Xem Mắt Gặp Lại Người Thầm Thương",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/22-xem-mat-gap-lai-nguoi-tham-thuong.png",
+    link: "ngontinh/22-xem-mat-gap-lai-nguoi-tham-thuong.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 23,
+    title: "Chú Út Giấu Em Tất Cả",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/23-chu-ut-giau-em-tat-ca.png",
+    link: "dammy/23-chu-ut-giau-em-tat-ca.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 24,
+    title: "Sủng Phi Trồng Khoai",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/24-sung-phi-trong-khoai.png",
+    link: "cotrang/24-sung-phi-trong-khoai.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
