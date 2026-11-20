@@ -125,6 +125,27 @@ const stories = [
     link: "cotrang/nu-quoc-si-giu-luong-dao.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 19,
+    title: "Thư Ký Yêu Thầm Tám Năm",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/19-thu-ky-yeu-tham-tam-nam.png",
+    link: "ngontinh/19-thu-ky-yeu-tham-tam-nam.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 20,
+    title: "Bác Sĩ Gia Đình Của Tổng Tài Ngủ Quan Tài",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/20-bac-si-gia-dinh-cua-tong-tai-ngu-quan-tai.png",
+    link: "dammy/20-bac-si-gia-dinh-cua-tong-tai-ngu-quan-tai.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 21,
+    title: "Ta Đòi Lại Thân Xác",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/21-ta-doi-lai-than-xac.png",
+    link: "cotrang/21-ta-doi-lai-than-xac.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
