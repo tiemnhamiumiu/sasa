@@ -167,6 +167,27 @@ const stories = [
     link: "cotrang/24-sung-phi-trong-khoai.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 25,
+    title: "Cô Ấy Của Tinh Tế",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/25-co-ay-cua-tinh-te.png",
+    link: "ngontinh/25-co-ay-cua-tinh-te.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 26,
+    title: "Anh Em Gì Mà Đút Cơm Mỗi Ngày",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/26-anh-em-gi-ma-dut-com-moi-ngay.png",
+    link: "dammy/26-anh-em-gi-ma-dut-com-moi-ngay.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 27,
+    title: "Bắt Thái Tử Công Lược Ta",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/27-bat-thai-tu-cong-luoc-ta.png",
+    link: "cotrang/27-bat-thai-tu-cong-luoc-ta",
+    type: "cotrang",
+    desc: ``
   },
 
 
