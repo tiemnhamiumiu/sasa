@@ -155,6 +155,27 @@ body.movieLocked {
 }
 
 
+/* ---------- ẢNH BÌA ----------
+   Hiện khi chưa bấm xem, mất hẳn sau lần phát đầu tiên */
+
+.movie-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: #000000;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.movie-card.has-started .movie-poster {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
 /* ---------- LỚP PHỦ (bấm để phát / tạm dừng) ---------- */
 
 .movie-overlay {
@@ -174,6 +195,17 @@ body.movieLocked {
   cursor: pointer;
   transition: background 0.25s ease;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Khi còn ảnh bìa, lớp phủ chỉ làm tối nhẹ để ảnh rõ */
+.movie-card:not(.has-started) .movie-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.10) 55%,
+      rgba(0, 0, 0, 0.50) 100%
+    );
 }
 
 .movie-play-btn {

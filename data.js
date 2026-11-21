@@ -185,7 +185,49 @@ const stories = [
     id: 27,
     title: "Bắt Thái Tử Công Lược Ta",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/27-bat-thai-tu-cong-luoc-ta.png",
-    link: "cotrang/27-bat-thai-tu-cong-luoc-ta",
+    link: "cotrang/27-bat-thai-tu-cong-luoc-ta.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 28,
+    title: "Viết Lại Kết Cục Cho Anh",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/28-viet-lai-ket-cuc-cho-anh.png",
+    link: "ngontinh/28-viet-lai-ket-cuc-cho-anh.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 29,
+    title: "Sư Tôn Muốn Trốn, Đồ Nhi Không Buông",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/29-su-ton-muon-tron-do-nhi-khong-buong.png",
+    link: "dammy/29-su-ton-muon-tron-do-nhi-khong-buong.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 30,
+    title: "Vương Phi Bỏ Trốn Vì Đạn Mạc Báo Tử",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/30-vuong-phi-bo-tron-vi-dan-mac-bao-tu.png",
+    link: "cotrang/30-vuong-phi-bo-tron-vi-dan-mac-bao-tu.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 31,
+    title: "Thiên Nga Và Tường Vi Trắng",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/31-thien-nga-va-tuong-vi-trang.png",
+    link: "ngontinh/31-thien-nga-va-tuong-vi-trang.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 32,
+    title: "Bạo Quân Nuôi Giao Nhân Nhỏ",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/32-bao-quan-nuoi-giao-nhan-nho.png",
+    link: "dammy/32-bao-quan-nuoi-giao-nhan-nho.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 33,
+    title: "Thứ Nữ Tranh Đoạt",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/33-thu-nu-tranh-doat.png",
+    link: "cotrang/33-thu-nu-tranh-doat.html",
     type: "cotrang",
     desc: ``
   },
