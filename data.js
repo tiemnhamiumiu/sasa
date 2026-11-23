@@ -230,6 +230,69 @@ const stories = [
     link: "cotrang/33-thu-nu-tranh-doat.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 34,
+    title: "Vợ Hợp Đồng Của Tổng Tài Giàu Nhất",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/34-vo-hop-dong-cua-tong-tai-giau-nhat.png",
+    link: "ngontinh/34-vo-hop-dong-cua-tong-tai-giau-nhat.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 35,
+    title: "Thiên Kim Thật Là Tiên Tôn",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/35-thien-kim-that-la-tien-ton.png",
+    link: "dammy/35-thien-kim-that-la-tien-ton.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 36,
+    title: "Tiếng Lòng Nữ Quan Hóng Dưa",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/36-tieng-long-nu-quan-hong-dua.png",
+    link: "cotrang/36-tieng-long-nu-quan-hong-dua.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 37,
+    title: "Tiếng Lòng Của Đại Phản Diện",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/37-tieng-long-cua-dai-phan-dien.png",
+    link: "ngontinh/37-tieng-long-cua-dai-phan-dien.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 38,
+    title: "Tiểu Phúc Tinh Của Vương Gia Bạo Ngược",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.png",
+    link: "dammy/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 39,
+    title: "Cả Nhà Hoàng Đế Cùng Giả Bệnh",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/39-ca-nha-hoang-de-cung-gia-benh.png",
+    link: "cotrang/39-ca-nha-hoang-de-cung-gia-benh.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 40,
+    title: "Cố Tổng, Vợ Anh Còn Sống",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/40-co-tong-vo-anh-con-song.png",
+    link: "ngontinh/40-co-tong-vo-anh-con-song.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 41,
+    title: "Vương Phi Ăn Mày Chỉ Mê Bánh Bao",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/41-vuong-phi-an-may-chi-me-banh-bao.png",
+    link: "dammy/41-vuong-phi-an-may-chi-me-banh-bao.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 42,
+    title: "Cược Thua Ba Hoàng Tử Dưới Trăng",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh/44-cuoc-thua-ba-hoang-tu-duoi-trang.png",
+    link: "cotrang/44-cuoc-thua-ba-hoang-tu-duoi-trang.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
