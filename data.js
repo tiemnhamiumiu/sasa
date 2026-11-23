@@ -242,7 +242,7 @@ const stories = [
     title: "Thiên Kim Thật Là Tiên Tôn",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/35-thien-kim-that-la-tien-ton.png",
     link: "dammy/35-thien-kim-that-la-tien-ton.html",
-    type: "dammy",
+    type: "cotrang",
     desc: ``
   },{
     id: 36,
@@ -263,7 +263,7 @@ const stories = [
     title: "Tiểu Phúc Tinh Của Vương Gia Bạo Ngược",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.png",
     link: "dammy/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.html",
-    type: "dammy",
+    type: "cotrang",
     desc: ``
   },{
     id: 39,
@@ -284,7 +284,7 @@ const stories = [
     title: "Vương Phi Ăn Mày Chỉ Mê Bánh Bao",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/41-vuong-phi-an-may-chi-me-banh-bao.png",
     link: "dammy/41-vuong-phi-an-may-chi-me-banh-bao.html",
-    type: "dammy",
+    type: "cotrang",
     desc: ``
   },{
     id: 42,
