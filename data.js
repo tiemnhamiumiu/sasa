@@ -241,8 +241,8 @@ const stories = [
     id: 35,
     title: "Thiên Kim Thật Là Tiên Tôn",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/35-thien-kim-that-la-tien-ton.png",
-    link: "dammy/35-thien-kim-that-la-tien-ton.html",
-    type: "dammy",
+    link: "cotrang/35-thien-kim-that-la-tien-ton.html",
+    type: "cotrang",
     desc: ``
   },{
     id: 36,
@@ -262,8 +262,8 @@ const stories = [
     id: 38,
     title: "Tiểu Phúc Tinh Của Vương Gia Bạo Ngược",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.png",
-    link: "dammy/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.html",
-    type: "dammy",
+    link: "cotrang/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.html",
+    type: "cotrang",
     desc: ``
   },{
     id: 39,
@@ -283,8 +283,8 @@ const stories = [
     id: 41,
     title: "Vương Phi Ăn Mày Chỉ Mê Bánh Bao",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/41-vuong-phi-an-may-chi-me-banh-bao.png",
-    link: "dammy/41-vuong-phi-an-may-chi-me-banh-bao.html",
-    type: "dammy",
+    link: "cotrang/41-vuong-phi-an-may-chi-me-banh-bao.html",
+    type: "cotrang",
     desc: ``
   },{
     id: 42,
@@ -303,9 +303,9 @@ const stories = [
   },{
     id: 44,
     title: "Sư Tôn Nuôi Phản Diện Bằng Khoai Tây",
-    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh144-su-ton-nuoi-phan-dien-bang-khoai-tay.png",
-    link: "dammy/44-su-ton-nuoi-phan-dien-bang-khoai-tay.html",
-    type: "dammy",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/44-su-ton-nuoi-phan-dien-bang-khoai-tay.png",
+    link: "cotrang/44-su-ton-nuoi-phan-dien-bang-khoai-tay.html",
+    type: "cotrang",
     desc: ``
   },{
     id: 45,
