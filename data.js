@@ -314,6 +314,48 @@ const stories = [
     link: "cotrang/45-chu-mau-phu-tuong-quan-trong-sinh.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 46,
+    title: "Giấu Bầu Đôi, Tổng Tài Trèo Cửa Sổ Giữ Vợ",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/46-giau-bau-doi-tong-tai-treo-cua-so-giu-vo.png",
+    link: "ngontinh/46-giau-bau-doi-tong-tai-treo-cua-so-giu-vo.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 47,
+    title: "Xuất Cung Thất Bại, Ta Thành Hoàng Hậu",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/47-xuat-cung-that-bai-ta-thanh-hoang-hau.png",
+    link: "cotrang/47-xuat-cung-that-bai-ta-thanh-hoang-hau.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 48,
+    title: "Gian Thần Cầu Chết",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/48-gian-than-cau-chet.png",
+    link: "cotrang/48-gian-than-cau-chet.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 49,
+    title: "Thánh Nữ Pháo Hôi Vạn Người Mê",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/49-thanh-nu-phao-hoi-van-nguoi-me.png",
+    link: "ngontinh/49-thanh-nu-phao-hoi-van-nguoi-me.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 50,
+    title: "Gả Thay Tướng Phủ, Mang Không Gian Đi Lưu Đày",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/50-ga-thay-tuong-phu-mang-khong-gian-di-luu-day.png",
+    link: "cotrang/50-ga-thay-tuong-phu-mang-khong-gian-di-luu-day.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 51,
+    title: "Bát Mì Nguội Của Tiểu Công Chúa",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/51-bat-mi-nguoi-cua-tieu-cong-chua.png",
+    link: "cotrang/51-bat-mi-nguoi-cua-tieu-cong-chua.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
