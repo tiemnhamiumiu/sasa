@@ -242,7 +242,7 @@ const stories = [
     title: "Thiên Kim Thật Là Tiên Tôn",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/35-thien-kim-that-la-tien-ton.png",
     link: "dammy/35-thien-kim-that-la-tien-ton.html",
-    type: "cotrang",
+    type: "dammy",
     desc: ``
   },{
     id: 36,
@@ -263,7 +263,7 @@ const stories = [
     title: "Tiểu Phúc Tinh Của Vương Gia Bạo Ngược",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.png",
     link: "dammy/38-tieu-phuc-tinh-cua-vuong-gia-bao-nguoc.html",
-    type: "cotrang",
+    type: "dammy",
     desc: ``
   },{
     id: 39,
@@ -284,13 +284,34 @@ const stories = [
     title: "Vương Phi Ăn Mày Chỉ Mê Bánh Bao",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/41-vuong-phi-an-may-chi-me-banh-bao.png",
     link: "dammy/41-vuong-phi-an-may-chi-me-banh-bao.html",
-    type: "cotrang",
+    type: "dammy",
     desc: ``
   },{
     id: 42,
     title: "Cược Thua Ba Hoàng Tử Dưới Trăng",
     image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/44-cuoc-thua-ba-hoang-tu-duoi-trang.png",
     link: "cotrang/44-cuoc-thua-ba-hoang-tu-duoi-trang.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 43,
+    title: "Thiên Kim Hung Dữ Giữa Tiệc Xa Hoa",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/43-thien-kim-hung-du-giua-tiec-xa-hoa.png",
+    link: "ngontinh/43-thien-kim-hung-du-giua-tiec-xa-hoa.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 44,
+    title: "Sư Tôn Nuôi Phản Diện Bằng Khoai Tây",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh144-su-ton-nuoi-phan-dien-bang-khoai-tay.png",
+    link: "dammy/44-su-ton-nuoi-phan-dien-bang-khoai-tay.html",
+    type: "dammy",
+    desc: ``
+  },{
+    id: 45,
+    title: "Chủ Mẫu Phủ Tướng Quân Trọng Sinh",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/45-chu-mau-phu-tuong-quan-trong-sinh.png",
+    link: "cotrang/45-chu-mau-phu-tuong-quan-trong-sinh.html",
     type: "cotrang",
     desc: ``
   },
