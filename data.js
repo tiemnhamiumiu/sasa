@@ -356,6 +356,69 @@ const stories = [
     link: "cotrang/51-bat-mi-nguoi-cua-tieu-cong-chua.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 52,
+    title: "Kiếp Này Không Chọn Người Vừa Vặn",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/52-kiep-nay-khong-chon-nguoi-vua-van.png",
+    link: "ngontinh/52-kiep-nay-khong-chon-nguoi-vua-van.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 53,
+    title: "Mượn Giống Quân Tử",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/53-muon-giong-quan-tu.png",
+    link: "cotrang/53-muon-giong-quan-tu.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 54,
+    title: "Thế Tử Phu Nhân Hòa Ly Làm Hoàng Hậu",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/54-the-tu-phu-nhan-hoa-ly-lam-hoang-hau.png",
+    link: "cotrang/54-the-tu-phu-nhan-hoa-ly-lam-hoang-hau.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 55,
+    title: "Tiếng Lòng Gia Sư Cứu Cả Nhà Hào Môn",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/55-tieng-long-gia-su-cuu-ca-nha-hao-mon.png",
+    link: "ngontinh/55-tieng-long-gia-su-cuu-ca-nha-hao-mon.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 56,
+    title: "Đoạn Khế Trùng Sinh",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/56-doan-khe-trung-sinh.png",
+    link: "cotrang/56-doan-khe-trung-sinh.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 57,
+    title: "Tú Cầu Nhầm Tay, Ta Gả Người Thương Thầm",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/57-tu-cau-nham-tay-ta-ga-nguoi-thuong-tham.png",
+    link: "cotrang/57-tu-cau-nham-tay-ta-ga-nguoi-thuong-tham.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 58,
+    title: "Tổng Tài Phản Diện Công Lược Nữ Phụ Độc Ác",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/58-tong-tai-phan-dien-cong-luoc-nu-phu-doc-ac.png",
+    link: "ngontinh/58-tong-tai-phan-dien-cong-luoc-nu-phu-doc-ac.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 59,
+    title: "Ngốc Phi Xung Hỷ, Giải Độc Cho Diêm Vương",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/59-ngoc-phi-xung-hi-giai-doc-cho-diem-vuong.png",
+    link: "cotrang/59-ngoc-phi-xung-hi-giai-doc-cho-diem-vuong.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 60,
+    title: "Nữ Quỷ Gả Cương Thi",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/60-nu-quy-ga-cuong-thi.png",
+    link: "cotrang/60-nu-quy-ga-cuong-thi.html",
+    type: "cotrang",
+    desc: ``
   },
 
 
