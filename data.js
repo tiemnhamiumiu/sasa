@@ -419,6 +419,55 @@ const stories = [
     link: "cotrang/60-nu-quy-ga-cuong-thi.html",
     type: "cotrang",
     desc: ``
+  },{
+    id: 61,
+    title: "Cầm Thẻ Đen Bỏ Trốn, Tổng Tài Đuổi Theo Cầu Hôn",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/61-cam-the-den-bo-tron-tong-tai-duoi-theo-cau-hon.png",
+    link: "ngontinh/61-cam-the-den-bo-tron-tong-tai-duoi-theo-cau-hon.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 62,
+    title: "Nông Nữ Không Gian Gả Chàng Mặt Sẹo",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/62-nong-nu-khong-gian-ga-chang-mat-seo.png",
+    link: "cotrang/62-nong-nu-khong-gian-ga-chang-mat-seo.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 63,
+    title: "Công Chúa Xuyên Sách Dỗ Dành Đại Phản Diện",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/63-cong-chua-xuyen-sach-do-danh-dai-phan-dien.png",
+    link: "cotrang/63-cong-chua-xuyen-sach-do-danh-dai-phan-dien.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 64,
+    title: "Hủy Hôn Cố Thiếu, Tôi Gả Tổng Tài Mục Thị",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/64-huy-hon-co-thieu-toi-ga-tong-tai-muc-thi.png",
+    link: "ngontinh/64-huy-hon-co-thieu-toi-ga-tong-tai-muc-thi.html",
+    type: "ngontinh",
+    desc: ``
+  },{
+    id: 65,
+    title: "Sống Lại, Ta Thuần Phục Bạo Quân Điên",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/65-song-lai-ta-thuan-phuc-bao-quan-dien.png",
+    link: "cotrang/65-song-lai-ta-thuan-phuc-bao-quan-dien.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 66,
+    title: "Nữ Đế Vạch Trần Thần Nữ Xuyên Không",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/66-nu-de-vach-tran-than-nu-xuyen-khong.png",
+    link: "cotrang/66-nu-de-vach-tran-than-nu-xuyen-khong.html",
+    type: "cotrang",
+    desc: ``
+  },{
+    id: 67,
+    title: "Vô Tận Hạ Và Dải Ngân Hà",
+    image: "https://ia600704.us.archive.org/34/items/tiemnhamiumiu_anh1/67-vo-tan-ha-va-dai-ngan-ha.png",
+    link: "ngontinh/67-vo-tan-ha-va-dai-ngan-ha.html",
+    type: "ngontinh",
+    desc: ``
   },
 
 
